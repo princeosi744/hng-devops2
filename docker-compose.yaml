@@ -55,7 +55,7 @@ services:
     depends_on:
       - app_blue
       - app_green
-    command: ["/entrypoint.sh"]
+    # command: ["/entrypoint.sh"]
 
 networks:
   app_network:
