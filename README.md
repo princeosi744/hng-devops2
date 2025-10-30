@@ -1,28 +1,11 @@
-# HNG DevOps Stage 2 - Blue/Green with Nginx
+## Stage 3 — Observability & Slack Alerts (testing)
 
-# Blue/Green Deployment with Nginx Auto-Failover
+1. Copy `.env.example` to `.env` and set:
+   - `BLUE_IMAGE` and `GREEN_IMAGE` (as grader supplies)
+   - `SLACK_WEBHOOK_URL` (for test Slack channel)
+   - optionally adjust `ERROR_RATE_THRESHOLD`, `WINDOW_SIZE`, `ALERT_COOLDOWN_SEC`.
 
-This repository implements a Blue/Green deployment strategy for a Node.js application with automatic failover using Nginx as a reverse proxy.
+2. Start services:
+   ```bash
+   docker compose up -d
 
-## Overview
-
-The setup includes:
-- **Blue Service**: Primary active service (port 8081)
-- **Green Service**: Backup service (port 8082)
-- **Nginx**: Reverse proxy with auto-failover (port 8080)
-
-### Key Features
-- Automatic failover from Blue to Green on failures
-- Zero downtime during failover
-- Proper header forwarding (`X-App-Pool`, `X-Release-Id`)
-- Quick failure detection with tight timeouts
-- Retry logic for transparent failover
-jie-aafi-ozz
-
-## Files
-- `docker-compose.yml` - runs nginx, app_blue, app_green
-- `nginx.conf.template`- nginx template (uses $ACTIVE_POOL)
-- `.env.example` - example env file to copy as `.env`
-
-## Quick setup (local)
-1. Copy `.env.example` to `.env` and fill `BLUE_IMAGE` and `GREEN_IMAGE` with the provided images.
